@@ -1,0 +1,37 @@
+parameters:
+    #
+    # models
+    #
+    reshipi_web.model_collection.entity_class: Reshipi\WebBundle\Entity\CollectionEntity
+    reshipi_web.model_collection.repository_class: Reshipi\WebBundle\Entity\Repository\ProjecRepository
+    reshipi_web.model_collection.service_class: Reshipi\WebBundle\Model\CollectionModel
+
+    reshipi_web.model_recipe.entity_class: Reshipi\WebBundle\Entity\RecipeEntity
+    reshipi_web.model_recipe.repository_class: Reshipi\WebBundle\Entity\Repository\RecipeRepository
+    reshipi_web.model_recipe.service_class: Reshipi\WebBundle\Model\RecipeModel
+
+services:
+    #
+    # repositories
+    #
+    reshipi_web.model_collection.repository:
+        class: %reshipi_web.model_collection.repository_class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: [%reshipi_web.model_collection.entity_class%]
+
+    reshipi_web.model_recipe.repository:
+        class: %reshipi_web.model_recipe.repository_class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: [%reshipi_web.model_recipe.entity_class%]
+
+    #
+    # models
+    #
+    reshipi_web.model_collection:
+        class: %reshipi_web.model_collection.service_class%
+        arguments: [@reshipi_web.model_collection.repository, @doctrine.orm.entity_manager , @validator, %reshipi_web.data_dir%]
+    reshipi_web.model_recipe:
+        class: %reshipi_web.model_recipe.service_class%
+        arguments: [@reshipi_web.model_recipe.repository, @doctrine.orm.entity_manager , @validator]
