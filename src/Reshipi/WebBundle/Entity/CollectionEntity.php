@@ -34,6 +34,7 @@ class CollectionEntity
 
     /**
      * @ORM\ManyToMany(targetEntity="RecipeEntity")
+     * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinTable(
      *      name="collections_recipes",
      *      joinColumns={@ORM\JoinColumn(name="collection_id", referencedColumnName="id")},
