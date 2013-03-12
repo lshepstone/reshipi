@@ -49,13 +49,8 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
+            <a class="brand" href="{{ path('reshipi_web_collection_all') }}">Reshipi</a>
             <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li{% if (app.request.attributes.get('_route') == 'reshipi_web_collection_all') %} class="active"{% endif %}><a href="{{ path('reshipi_web_collection_all') }}">Reshipi</a></li>
-                    {% if collection is defined %}
-                    <li class="active"><a href="{{ path('reshipi_web_collection_all') }}">{{ collection.name }}</a></li>
-                    {% endif %}
-                </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
